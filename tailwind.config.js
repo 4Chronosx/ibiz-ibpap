@@ -36,6 +36,7 @@ export default {
         tint: {
           pink: '#FFCEF3',
           brown: '#FEF4EB',
+          black: '#F1F1F1',
         },
         stroke: {
           300: '#C3C3C3',
@@ -47,14 +48,10 @@ export default {
           pink: '#FCF1F7'
         },
         background: {
-          landing: '#FEF4EB',
           normal: '#FEF4EB',
         }
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-  ],
 }
 
