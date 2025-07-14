@@ -1,0 +1,12 @@
+import WebLogo from '../../assets/web-logo.svg';
+import { HomeIcon as HomeIconOutline } from '@heroicons/react/24/outline';
+import { HomeIcon as HomeIconSolid } from '@heroicons/react/24/solid';
+import { BookOpenIcon as GuidesIconOutline } from '@heroicons/react/24/outline';
+import { BookOpenIcon as GuidesIconSolid } from '@heroicons/react/24/solid';
+import { LightBulbIcon as TrainingsIconOutline } from '@heroicons/react/24/outline';
+import { LightBulbIcon as TrainingsIconSolid } from '@heroicons/react/24/solid';
+import { MagnifyingGlassIcon as SearchIconOutline } from '@heroicons/react/24/outline';
+import HandshakeOutline from '@mui/icons-material/HandshakeOutlined';
+import Handshake from '@mui/icons-material/Handshake';
+import GroupsOutline from '@mui/icons-material/GroupsOutlined';
+import Groups from '@mui/icons-material/Groups';
