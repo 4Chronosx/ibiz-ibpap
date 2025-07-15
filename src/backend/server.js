@@ -139,3 +139,145 @@ PROMPT
                         "${message}"`;
 
 */
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
+import OpenAI from 'openai';
+import cors from 'cors';
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
+
+app.post('/chat', async(req, res) => {
+  try {
+    const {message} = req.body;
+
+    if (!message) {
+      console.log("Missing message!");
+    }
+
+    const prompt = `You are an API. Return ONLY a valid JSON object with this structure. Do NOT include any text or code fences outside the JSON:
+                        {
+                            "businessName": "string",
+                            "location": "string",
+                            "businessDescription": "string",
+                            "summary": {
+                                "overallRating": number,
+                                "verdict": "string",
+                                "overview": [
+                                {
+                                    "category": "Products/Service",
+                                    "rating": number,
+                                    "summary": "string"
+                                },
+                                {
+                                    "category": "Market",
+                                    "rating": number,
+                                    "summary": "string"
+                                },
+                                {
+                                    "category": "Organization",
+                                    "rating": number,
+                                    "summary": "string"
+                                },
+                                {
+                                    "category": "Finance",
+                                    "rating": number,
+                                    "summary": "string"
+                                }
+                                ],
+                                "keyFindings": ["string"]
+                            },
+
+                            "category": {
+                                "productService": {
+                                "rating": number,
+                                "summary": "string",
+                                "verdict": "string",
+                                "strengths": ["string"],
+                                "risks": ["string"],
+                                "suggestions": ["string"]
+                                },
+                                "market": {
+                                "rating": number,
+                                "summary": "string",
+                                "verdict": "string",
+                                "competitors": [
+                                    {
+                                    "name": "string",
+                                    "shortDescription": "string",
+                                    "link": "string"
+                                    }
+                                ],
+                                "suggestions": ["string"]
+                                },
+                                "organizational": {
+                                "rating": number,
+                                "summary": "string",
+                                "verdict": "string",
+                                "strengths": ["string"],
+                                "risks": ["string"],
+                                "suggestions": ["string"]
+                                },
+                                "financial": {
+                                "rating": number,
+                                "summary": "string",
+                                "verdict": "string",
+                                "startupCapital": "string-number",
+                                "monthlyRevenueRange": ["string-number", "string-number"],
+                                "breakevenMonths": ["string-number", "string-number"],
+                                "suggestions": ["string"]
+                                }
+                            },
+                        }
+
+                        RULES:
+
+                        1. Ratings should be only x.xx/10 .
+                        2. Verdicts are ["Less Feasible", "Moderately Feasible", "Highly Feasible"].
+                        3. When dealing with large numbers, format with comma when necessary.
+                        4. For key findings, strengths, and risks, and suggestions, they should have at least 3 bullet points and each bullet should be at least 70 words.
+                        5. businessDescription should be 100-150 words.
+
+                        Do NOT include any text outside the JSON. Here is the user message:
+                        "${message}"`;
+
+    const chatResponse = await openai.chat.completions.create({
+      
+      messages: [{ content: prompt, role: 'user' }],
+      model: 'gpt-4-0125-preview',
+      
+    });
+
+    let raw = chatResponse.choices[0].message.content;
+    console.log('Raw gpt: ', raw);
+    let response = raw.trim();
+
+    if (response.startsWith('```json')) {
+      response = response.replace(/^```json/, "").replace(/```$/, "").trim();
+    }
+
+    let parsed = JSON.parse(response);
+
+    res.json(parsed);
+
+
+    
+  } catch (error) {
+    console.log("Error: ", error)
+    
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`);
+})
