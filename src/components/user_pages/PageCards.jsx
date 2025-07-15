@@ -53,7 +53,7 @@ const DownloadButton = ({ link }) => {
     );
 }
 
-export const BusinessCard = ({ title, location, description, image }) => {
+export const BusinessCard = ({ title, location, description, image, businessPlanPdfUrl }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedTab, setSelectedTab] = useState('feasibility');
 
@@ -80,8 +80,9 @@ export const BusinessCard = ({ title, location, description, image }) => {
                                 Close
                             </button>
                             <button
-                                onClick={''}
+                                onClick={() => businessPlanPdfUrl && window.open(businessPlanPdfUrl, '_blank')}
                                 className='flex items-center gap-2 bg-secondary-brown hover:bg-secondary-brown/70 transition-all duration-300 text-primary-black font-[Istok Web] font-medium text-[14px] rounded-md border border-primary-black/50 px-8 py-2 flex-shrink-0'
+                                disabled={!businessPlanPdfUrl}
                             >
                                 Download PDF<DownloadIcon className='w-4 h-4' />
                             </button>
@@ -97,7 +98,13 @@ export const BusinessCard = ({ title, location, description, image }) => {
                             </button>
                         </div>
                         <div className='flex-1'>
-                            {selectedTab === 'feasibility' ? '' : <iframe src={''} className='w-full h-full' title="Business Plan PDF" />}
+                            {selectedTab === 'feasibility' ? '' : (
+                                businessPlanPdfUrl ? (
+                                    <iframe src={businessPlanPdfUrl} className='w-full h-full' title="Business Plan PDF" />
+                                ) : (
+                                    <div className='flex items-center justify-center h-full text-gray-400'>No PDF available</div>
+                                )
+                            )}
                         </div>
                     </div>
                 </div>
