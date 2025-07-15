@@ -82,6 +82,10 @@ function FeasibilityPage() {
   const [pdfLoading, setPdfLoading] = useState(false);``
   const [pdfProgress, setPdfProgress] = useState(0);
 
+  const location = useLocation();
+  const { userData } = location.state || {}; 
+  const navigate = useNavigate();
+
   const [result, setResult] = useState({
     businessName: "",
     location: "",
@@ -345,7 +349,6 @@ function FeasibilityPage() {
 
   const handleSubmit = async() => {
 
-    
 
     try {
       const response = await fetch('http://localhost:3000/chat', {
@@ -353,11 +356,12 @@ function FeasibilityPage() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({message: message})
+        body: JSON.stringify({message: userData})
       });
 
       let data = await response.json();
       console.log(data);
+      setResult(data);
       
     } catch (error) {
       console.log('Error: ', error);
@@ -365,11 +369,15 @@ function FeasibilityPage() {
     
   }
 
-
+  useEffect(() => {
+    handleSubmit();
+  }, []);
 
   return (
     <>
-    <Feasibility genPdf={generateBusinessPlanPDF}></Feasibility>
+
+    <Feasibility genPdf={generateBusPdf} handleSumbmit={handleSubmit} result={result}></Feasibility>
+
     </>
   );
 }
