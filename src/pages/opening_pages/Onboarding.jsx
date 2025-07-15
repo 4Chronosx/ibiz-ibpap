@@ -9,9 +9,9 @@ import AIAdditional from '../../components/onboarding/AIAdditional';
 import Step6Summary from '../../components/onboarding/Summarypage';
 import LoadingAnimation from '../../components/onboarding/Analyzinganimation';
 
-import StepLayout from '../components/StepLayout';
-import StepProgressBar from '../components/ProgressBar';
-import Navbar from '../components/userPages/Navbar';
+// import StepLayout from '../components/StepLayout';
+// import StepProgressBar from '../components/ProgressBar';
+// import Navbar from '../components/userPages/Navbar';
 
 const Onboarding = () => {
     const navigate = useNavigate();
@@ -136,6 +136,7 @@ const Onboarding = () => {
         }
 
         return (
+            
             <StepLayout
                 step={step}
                 totalSteps={totalSteps + 1}

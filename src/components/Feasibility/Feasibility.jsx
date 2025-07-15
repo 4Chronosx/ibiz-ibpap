@@ -15,7 +15,7 @@ import { useState } from "react";
 import Score from "./Score";
 import Feedback from "./Feedback";
 
-function Feasibility() {
+function Feasibility({genPdf}) {
 
     const [activeTab, setActiveTab] = useState("overview");
 
@@ -75,6 +75,9 @@ function Feasibility() {
                     }
                     
                 </div>
+
+                <button >Retry Analysis</button>
+                <button onClick={genPdf}>Generate Business Plan</button>
 
             </div>
 

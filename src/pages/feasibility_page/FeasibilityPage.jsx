@@ -112,6 +112,10 @@ function FeasibilityPage() {
     }
   });
 
+  const generateBusPdf = async() => {
+
+  }
+
 
   const handleSubmit = async() => {
 
@@ -151,7 +155,7 @@ function FeasibilityPage() {
 
   return (
     <>
-    <Feasibility></Feasibility>
+    <Feasibility genPdf={generateBusPdf}></Feasibility>
     </>
   );
 }
