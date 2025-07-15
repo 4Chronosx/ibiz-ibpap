@@ -56,12 +56,15 @@ result JSON format
 */
 
 import { useState } from "react";
+
 import Feasibility from "../../components/Feasibility/Feasibility";
 import jspdf from "jspdf";
+import { useNavigate } from "react-router-dom";
 
 
 
 function FeasibilityPage() {
+  const navigate = useNavigate();
   const message = `
     1. What is your business idea?
         I want to create a mobile laundry pickup and delivery service in Cebu City. Customers can book via an app, and we’ll pick up, wash, and return clothes within 24–48 hours.
@@ -328,8 +331,8 @@ function FeasibilityPage() {
       setTimeout(() => {
         setPdfLoading(false);
         setPdfProgress(0);
+        navigate('/home', { state: { feasibilityReport: result, businessPlanPdfUrl: pdfUrl } });
       }, 1000);
-      navigate('/home', {state: {feasibilityReport: result, businessPlanPdfUrl: pdfUrl}});
     } catch (err) {
       clearInterval(interval);
       setPdfLoading(false);
