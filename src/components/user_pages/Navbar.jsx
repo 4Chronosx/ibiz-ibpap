@@ -1,4 +1,4 @@
-import WebLogo from '../../assets/web-logo.svg';
+import WebLogo from '../../assets/ibiz-logo.svg';
 import { HomeIcon as HomeIconOutline } from '@heroicons/react/24/outline';
 import { HomeIcon as HomeIconSolid } from '@heroicons/react/24/solid';
 import { BookOpenIcon as GuidesIconOutline } from '@heroicons/react/24/outline';
@@ -10,6 +10,7 @@ import HandshakeOutline from '@mui/icons-material/HandshakeOutlined';
 import Handshake from '@mui/icons-material/Handshake';
 import GroupsOutline from '@mui/icons-material/GroupsOutlined';
 import Groups from '@mui/icons-material/Groups';
+
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 

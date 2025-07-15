@@ -1,4 +1,12 @@
-import Navbar from "../../components/userPages/Navbar";
-import UserProfile from "../../components/userPages/UserProfile";
-import NotificationPanel from "../../components/userPages/NotificationPanel";
-import { CommunityPageBody } from "../../components/userPages/PageBodies";
+import Navbar from "../../components/user_pages/Navbar";
+
+
+const CommunityPage = () => {
+    return(
+        <div className="w-full min-h-screen normal-bg">
+            <Navbar />
+        </div>
+    );
+}
+
+export default CommunityPage;
