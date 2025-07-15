@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/user_pages/Navbar";
+
 
 import BusinessIdeaStep from '../../components/onboarding/BusinessIdeaStep';
 import BeneficiariesStep from '../../components/onboarding/BeneficiariesStep';
 import BusinessProvidesStep from '../../components/onboarding/BusinessProvidesStep';
+import BusinessProvideStep from '../../components/onboarding/BusinessOrganization';
 import PricingModelStep from '../../components/onboarding/PricingModelStep';
 import AIAdditional from '../../components/onboarding/AIAdditional';
 import Step6Summary from '../../components/onboarding/Summarypage';
-import LoadingAnimation from '../../components/onboarding/Analyzinganimation';
 
-// import StepLayout from '../components/StepLayout';
-// import StepProgressBar from '../components/ProgressBar';
-// import Navbar from '../components/userPages/Navbar';
+import StepProgressBar from '../../components/progressbar';
+import StepLayout from '../../components/StepLayout';
 
 const Onboarding = () => {
     const navigate = useNavigate();
@@ -90,7 +91,7 @@ const Onboarding = () => {
                 break;
             case 3:
                 content = (
-                    <BusinessProvidesStep
+                    <BusinessProvideStep
                         formData={formData}
                         handleChange={handleChange}
                         handleMultiSelectChange={handleMultiSelectChange}
@@ -145,7 +146,7 @@ const Onboarding = () => {
                 onAnalyze={handleSubmit}
                 onEdit={() => setStep(1)}
                 title={step === 2 ? 'Who will benefit most from your business idea?' 
-                    : step === 3 ? 'What does your business provide?' 
+                    : step === 3 ? 'What do you have to make this happen?' 
                     : step === 4 ? (<>How will you make money, <br /> and how much money are you willing to start?</>) 
                     : step === 5 ? 'Is there anything else AI should consider?' 
                     : step === 6 ? 'Your Business Idea\'s Details' : ''}

@@ -1,4 +1,4 @@
-import WebLogo from '../../assets/web-logo.svg';
+import WebLogo from '../../assets/ibiz-logo.svg';
 import { HomeIcon as HomeIconOutline } from '@heroicons/react/24/outline';
 import { HomeIcon as HomeIconSolid } from '@heroicons/react/24/solid';
 import { BookOpenIcon as GuidesIconOutline } from '@heroicons/react/24/outline';
@@ -10,11 +10,12 @@ import HandshakeOutline from '@mui/icons-material/HandshakeOutlined';
 import Handshake from '@mui/icons-material/Handshake';
 import GroupsOutline from '@mui/icons-material/GroupsOutlined';
 import Groups from '@mui/icons-material/Groups';
+
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-const Navbar = ({ isNotMainPage = false, tab = '/home', isCommunity = false }) => {
-    const [activeTab, setActiveTab] = useState(tab);
+const Navbar = ({ isNotMainPage = false,  isCommunity = false }) => {
+    const [activeTab, setActiveTab] = useState('/home');
     const navigate = useNavigate();
 
     const handleNavigate = (path) => {
@@ -30,7 +31,6 @@ const Navbar = ({ isNotMainPage = false, tab = '/home', isCommunity = false }) =
                 {isCommunity && <div className='flex item-center gap-1 w-[215px] bg-primary-white rounded-full border text-[14px] border-stroke-300 px-4 py-2'>
                     <SearchIconOutline className='w-4 h-5 opacity-40 items-center' /> <p className='text-primary-black/60'>Search</p></div>}
             </div>
-
 
             {!isNotMainPage && (
                 <ul className="bg-primary-white border border-stroke-300 self-center flex items-center gap-1 px-1 py-1 rounded-full">

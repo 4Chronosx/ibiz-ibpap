@@ -13,18 +13,30 @@ import { faScaleBalanced } from "@fortawesome/free-solid-svg-icons";
 
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Score from "./Score";
 import Feedback from "./Feedback";
 import Table from './Table';
 import SubScore from './SubScore';
 import FinanceDetail from './FinanceDetail';
 
+
 function Feasibility({genPdf, handleSumbmit, result}) {
 
     const [activeTab, setActiveTab] = useState("overview");
     
 
+
+
+
     return(<>
+        {/* PDF Loading Overlay */}
+        {showPdfLoading && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+                <video src={require('../../assets/loading_&_error/PDFGeneration.mp4')} autoPlay loop width="400" height="400" />
+                <span className="text-white text-xl mt-4 absolute bottom-10">Generating Business Plan PDF...</span>
+            </div>
+        )}
 
         <div className="h-screen w-screen flex justify-center items-center font-istok">
             <div className="h-[47rem] w-[40rem] bg-stroke-100 rounded-3xl flex flex-col shadow-lg">
@@ -129,8 +141,10 @@ function Feasibility({genPdf, handleSumbmit, result}) {
                     }
                 </div>
 
+
                 <button onClick={handleSumbmit}>Retry Analysis</button>
                 <button onClick={genPdf}>Generate Business Plan</button>
+
 
             </div>
 
