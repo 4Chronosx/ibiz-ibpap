@@ -13,13 +13,12 @@ const beneficiaryIcons = {
   Others: "…"
 };
 
-const providesIcons = {
-  Products: "🛍️",
-  Services: "🛠️",
-  Experience: "🎢",
-  Solutions: "💡",
-  Information: "ℹ️",
-  Others: "…"
+const organizationIcons = {
+    BusinessPartner: "�",
+    Equipment: "🛠️",
+    Funding: "�",
+    NoTeamYet: "👥",
+    Others: "…"
 };
 
 const pricingIcons = {
@@ -86,15 +85,15 @@ const Step6Summary = ({ formData }) => (
         <div className="text-lg font-bold text-gray-800 mb-2">Core Offerings</div>
         <div className="border border-gray-200 rounded-xl p-4 bg-white">
             <div className="flex flex-wrap gap-2 mb-2">
-                {formData.businessProvides && formData.businessProvides.length > 0 ? (
-                    formData.businessProvides.map((offering, idx) => (
-                    <Chip key={idx} label={offering} icon={providesIcons[offering] || "…"} />
+                {formData.businessOrganization && formData.businessOrganization.length > 0 ? (
+                    formData.businessOrganization.map((offering, idx) => (
+                    <Chip key={idx} label={offering} icon={organizationIcons[offering] || "…"} />
                     ))
                 ) : (
                     <span className="text-xs text-gray-500">No offerings selected</span>
                 )}
-                {formData.customBusinessProvides && (
-                    <Chip label={formData.customBusinessProvides} icon="…" />
+                {formData.customBusinessOrganization && (
+                    <Chip label={formData.customBusinessOrganization} icon="…" />
                 )}
             </div>
             <div className="text-xs text-gray-500 mb-1">Additional Description for Core Offerings</div>

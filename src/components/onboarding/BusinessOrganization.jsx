@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Box, TextField, Button, Chip } from '@mui/material';
-import { PersonOutline, ChildCareOutlined, ManOutlined, SchoolOutlined, ElderlyOutlined, FamilyRestroomOutlined, SportsEsportsOutlined, FlightTakeoffOutlined, MoreHorizOutlined, EditOutlined, WorkOutline, FemaleOutlined } from '@mui/icons-material';
+import { PersonOutline, ChildCareOutlined, ManOutlined, SchoolOutlined, ElderlyOutlined, FamilyRestroomOutlined, SportsEsportsOutlined, FlightTakeoffOutlined, WorkOutline, FemaleOutlined } from '@mui/icons-material';
+import { ShoppingBagOutlined, LocalShippingOutlined, EmojiEventsOutlined, LightbulbOutlined, InfoOutlined, MoreHorizOutlined, EditOutlined, TravelExploreOutlined } from '@mui/icons-material';
 
 /**
  * BeneficiariesStep Component
@@ -14,20 +15,15 @@ import { PersonOutline, ChildCareOutlined, ManOutlined, SchoolOutlined, ElderlyO
  * @param {function} props.handleMultiSelectChange - Callback function for multi-select (e.g., beneficiaries).
  * @param {function} props.nextStep - Callback function to advance to the next step.
  */
-const BeneficiariesStep = ({ formData, handleChange, handleMultiSelectChange, nextStep }) => {
+const BusinessProvideStep = ({ formData, handleChange, handleMultiSelectChange, nextStep }) => {
     const maxCharacters = 5000;
 
-    const getBeneficiaryIcon = (beneficiary) => {
-        switch (beneficiary) {
-            case 'Women': return <FemaleOutlined sx={{ color: '#f97316' }} />;
-            case 'Children': return <ChildCareOutlined sx={{ color: '#f97316' }} />;
-            case 'Men': return <ManOutlined sx={{ color: '#f97316' }} />;
-            case 'Professionals': return <WorkOutline sx={{ color: '#f97316' }} />;
-            case 'Students': return <SchoolOutlined sx={{ color: '#f97316' }} />;
-            case 'Elderly': return <ElderlyOutlined sx={{ color: '#f97316' }} />;
-            case 'Families': return <FamilyRestroomOutlined sx={{ color: '#f97316' }} />;
-            case 'Gamers': return <SportsEsportsOutlined sx={{ color: '#f97316' }} />;
-            case 'Tourists': return <FlightTakeoffOutlined sx={{ color: '#f97316' }} />;
+    const getProvidesIcon = (item) => {
+        switch (item) {
+            case 'Business Partner': return <ShoppingBagOutlined sx={{ color: '#f97316' }} />;
+            case 'Equipment': return <LocalShippingOutlined sx={{ color: '#f97316' }} />;
+            case 'Funding': return <LightbulbOutlined sx={{ color: '#f97316' }} />;
+            case 'No Team Yet': return <TravelExploreOutlined sx={{ color: '#f97316' }} />;
             case 'Others': return <MoreHorizOutlined sx={{ color: '#f97316' }} />;
             default: return null;
         }
@@ -56,25 +52,20 @@ const BeneficiariesStep = ({ formData, handleChange, handleMultiSelectChange, ne
             <div className='w-[640px] h-[435px]'>
             <div className='flex flex-wrap gap-2 mb-4 justify-center'>
                 {(() => {
-                  const beneficiaryIcons = {
-                    Women: "👩",
-                    Children: "🧒",
-                    Men: "👨",
-                    Professionals: "💼",
-                    Students: "🎓",
-                    Elderly: "🧓",
-                    Families: "👨‍👩‍👧‍👦",
-                    Gamers: "🎮",
-                    Tourists: "🧳",
+                  const organizationIcons = {
+                    Partners: "🤜",
+                    Equipment: "🛠️",
+                    Funding: "💵",
+                    NoTeamYet: "👥",
                     Others: "…"
                   };
-                  return Object.keys(beneficiaryIcons).map((beneficiary) => (
+                  return Object.keys(organizationIcons).map((item) => (
                     <Chip
-                      key={beneficiary}
-                      label={beneficiary}
-                      icon={beneficiaryIcons[beneficiary]}
-                      selected={formData.beneficiaries.includes(beneficiary)}
-                      onClick={() => handleMultiSelectChange('beneficiaries', beneficiary)}
+                      key={item}
+                      label={item}
+                      icon={organizationIcons[item]}
+                      selected={formData.businessOrganization.includes(item)}
+                      onClick={() => handleMultiSelectChange('businessOrganization', item)}
                     />
                   ));
                 })()}
@@ -82,14 +73,14 @@ const BeneficiariesStep = ({ formData, handleChange, handleMultiSelectChange, ne
 
             {formData.beneficiaries.includes('Others') && (
                 <div className="mb-4">
-                    <label htmlFor="customBeneficiaries" className="flex items-center gap-2 text-primary-orange font-medium mb-2">
+                    <label htmlFor="customBusinessOrganization" className="flex items-center gap-2 text-primary-orange font-medium mb-2">
                         <span role="img" aria-label="more">…</span> Specify other beneficiaries
                     </label>
                     <input
-                        id="customBeneficiaries"
-                        name="customBeneficiaries"
+                        id="customBusinessOrganization"
+                        name="customBusinessOrganization"
                         type="text"
-                        value={formData.customBeneficiaries}
+                        value={formData.customBusinessOrganization}
                         onChange={handleChange}
                         className="w-full rounded-xl border-2 border-pink-400 focus:border-pink-400 focus:ring-2 focus:ring-pink-400 text-base text-gray-800 p-3 placeholder:text-gray-400 outline-none transition-all duration-200"
                         placeholder="Specify other beneficiaries"
@@ -99,15 +90,15 @@ const BeneficiariesStep = ({ formData, handleChange, handleMultiSelectChange, ne
 
             <div className="mb-4">
                 <p className="text-sm text-right mb-1 text-secondary-black italic">
-                    {formData.describeCustomers?.length || 0}/{maxCharacters} characters
+                    {formData.howToDeliver?.length || 0}/{maxCharacters} characters
                 </p>
                 <label htmlFor="describeCustomers" className="flex items-center gap-2 text-primary-black mb-2">
                    
                 </label>
                 <textarea
-                    id="describeCustomers"
-                    name="describeCustomers"
-                    value={formData.describeCustomers || ''}
+                    id="howToDeliver"
+                    name="howToDeliver"
+                    value={formData.howToDeliver || ''}
                     onChange={handleChange}
                     rows={6}
                     maxLength={maxCharacters}
@@ -119,4 +110,4 @@ const BeneficiariesStep = ({ formData, handleChange, handleMultiSelectChange, ne
     );
 };
 
-export default BeneficiariesStep;
+export default BusinessProvideStep;
