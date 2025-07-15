@@ -61,6 +61,10 @@ import Feasibility from "../../components/Feasibility/Feasibility";
 
 function FeasibilityPage() {
 
+  const location = useLocation();
+  const { userData } = location.state || {}; 
+  const navigate = useNavigate();
+
   const [result, setResult] = useState({
     businessName: "",
     location: "",
@@ -119,19 +123,7 @@ function FeasibilityPage() {
 
   const handleSubmit = async() => {
 
-    const message = `
-    1. What is your business idea?
-        I want to create a mobile laundry pickup and delivery service in Cebu City. Customers can book via an app, and we’ll pick up, wash, and return clothes within 24–48 hours.
-    2. Who are your target customers?
-        Busy professionals and working students living in apartments or condos in Cebu. They don’t have time or space to do laundry.
-    3. What makes you or your team capable of running this business?
-        I have a logistics background, and my cousin owns a laundromat we can partner with. I also have some experience working on mobile app development projects.
-    4. How much are you willing to spend to start, and how will you make money?
-        I can invest around ₱100,000 initially. I plan to charge ₱150 per load, with optional express service for an extra ₱50. I expect around 10–20 orders per day once we’re up and running.
-    5. Is there anything else the AI should consider?
-        I want this to be eco-friendly by using biodegradable laundry products. I’m also hoping it creates job opportunities for riders.
-    
-    `;
+  
 
     try {
       const response = await fetch('http://localhost:3000/chat', {
@@ -139,11 +131,12 @@ function FeasibilityPage() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({message: message})
+        body: JSON.stringify({message: userData})
       });
 
       let data = await response.json();
       console.log(data);
+      setResult(data);
       
     } catch (error) {
       console.log('Error: ', error);
@@ -151,11 +144,13 @@ function FeasibilityPage() {
     
   }
 
-
+  useEffect(() => {
+    handleSubmit();
+  }, []);
 
   return (
     <>
-    <Feasibility genPdf={generateBusPdf}></Feasibility>
+    <Feasibility genPdf={generateBusPdf} handleSumbmit={handleSubmit} result={result}></Feasibility>
     </>
   );
 }

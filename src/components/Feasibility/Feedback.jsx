@@ -7,7 +7,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 function Feedback({icon, bgPrimary, bgSecondary, txPrimary, txSecondary, title, content}) {
     return (
         <>
-        <div className={`${bgPrimary} flex flex-1 h-auto my-2 rounded-xl pl-2`}>
+        <div className={`${bgPrimary} flex flex-1 h-auto my-2 rounded-xl pl-2 min-w-[10rem]`}>
             <div className={`${bgSecondary} flex-1 h-full rounded-xl flex flex-col py-2 pb-4`}>
                 <div className="flex justify-start px-4 py-2">
                     <div className={`${bgPrimary} h-[1.5rem] w-[1.5rem] rounded-md flex justify-center items-center`}><FontAwesomeIcon icon={icon} className={`${txSecondary}`}></FontAwesomeIcon></div>
