@@ -10,7 +10,7 @@ const TrainingsPage = () => {
             <Navbar />
             <div className="flex justify-between px-16 pt-24">
                 <UserProfile />
-                <PageBody pageName='Trainings' children={<PageCards pageName='trainings' grid={2} />}/>
+                <PageBody subtitle='See All Trainings' pageName='Trainings' children={<PageCards pageName='trainings' grid={2} />}/>
                 <NotificationPanel />
             </div>
         </div>

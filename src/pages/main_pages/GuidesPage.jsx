@@ -11,7 +11,7 @@ const GuidesPage = () => {
             <Navbar />
             <div className="flex justify-between px-16 pt-24">
                 <UserProfile />
-                <PageBody pageName='Guides' children={<PageCards pageName='guides' grid={1} />}/>
+                <PageBody subtitle='See All Guides' pageName='Guides' children={<PageCards pageName='guides' grid={1} />}/>
                 <NotificationPanel />
             </div>
         </div>
