@@ -152,10 +152,10 @@ export const GuideCard = ({ image, title, agency, description, downloadLink, lin
 
 export const TrainingCard = ({ image, title, agency, description, link }) => {
     return(
-        <div className='bg-secondary-green/80 h-full  rounded-lg border border-stroke-300 flex flex-col gap-1 overflow-hidden' >
+        <div className='bg-secondary-green/80 h-full w-full  rounded-lg border border-stroke-300 flex flex-col gap-2 overflow-hidden' >
             <img src={DTIPic} className='h-[150px] w-full object-cover rounded-t-lg'/>
-            <div className='px-4 py-2 flex flex-col h-full justify-between gap-2'>
-                <div className='flex flex-col gap-2'>
+            <div className='px-4 py-2 flex flex-col h-full justify-between gap-8'>
+                <div className='flex flex-col gap-4'>
                     <div className='flex gap-2'>
                         <img src={image} className='w-12 h-12'/>
                         <div>
@@ -174,9 +174,9 @@ export const TrainingCard = ({ image, title, agency, description, link }) => {
 
 export const LoanCard = ({ image, logo, title, subtitle, agency, link }) => {
     return(
-        <div className='bg-secondary-green/80 h-full  rounded-lg border border-stroke-300 flex flex-col gap-1 overflow-hidden' >
+        <div className='bg-secondary-green/80 h-full  rounded-lg border border-stroke-300 flex flex-col gap-2 overflow-hidden' >
             <img src={image} className='h-[150px] w-full object-cover rounded-t-lg'/>
-            <div className='px-4 py-2 flex flex-col h-full justify-between gap-2'>
+            <div className='px-4 py-2 flex flex-col h-full justify-between gap-8'>
                 <div className='flex flex-col gap-2'>
                     <div className='flex gap-2'>
                         <img src={logo} className='w-12 h-12'/>
@@ -202,7 +202,7 @@ export const ChecklistCard = () => {
     );
 }
 
-const PageCards = ({ pageName, grid }) => {
+const PageCards = ({ pageName, grid = 2  }) => {
     return(
         <div className={`w-full grid grid-cols-${grid} gap-3`}>
             { pageName === 'guides' && guidesUsable.map((guide, index) => (

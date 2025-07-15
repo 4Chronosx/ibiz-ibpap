@@ -16,7 +16,11 @@ const HomePage = () => {
             <Navbar />
             <div className="flex justify-between px-16 pt-24">
                 <UserProfile />
-                <PageBody children={<BusinessCard businessPlanPdfUrl={businessPlanPdfUrl} />} pageName='Business Plan'/>
+
+                <PageBody children={<BusinessCard businessPlanPdfUrl={businessPlanPdfUrl} />} pageName='Business Plan' subtitle='See All Business Plans'/>
+
+               
+
                 <NotificationPanel />
             </div>
         </div>
