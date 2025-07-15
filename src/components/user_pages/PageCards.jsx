@@ -195,7 +195,7 @@ export const ChecklistCard = () => {
     );
 }
 
-const PageCards = ({ pageName, grid = 1 }) => {
+const PageCards = ({ pageName, grid }) => {
     return(
         <div className={`w-full grid grid-cols-${grid} gap-3`}>
             { pageName === 'guides' && guidesUsable.map((guide, index) => (

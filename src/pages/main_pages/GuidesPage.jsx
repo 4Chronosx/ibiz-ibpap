@@ -9,9 +9,9 @@ const GuidesPage = () => {
     return(
         <div className="w-full min-h-screen normal-bg">
             <Navbar />
-            <div className="flex justify-between px-16 pt-4">
+            <div className="flex justify-between px-16 pt-24">
                 <UserProfile />
-                <PageBody children={<PageCards pageName='guides' grid={1} />}/>
+                <PageBody pageName='Guides' children={<PageCards pageName='guides' grid={1} />}/>
                 <NotificationPanel />
             </div>
         </div>

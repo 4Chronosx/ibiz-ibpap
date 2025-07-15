@@ -1,2 +1,9 @@
-import React from 'react';
-import { LinearProgress, Box } from '@mui/material';
+const StepProgressBar = () => {
+    return(
+        <div>
+            
+        </div>
+    );
+}
+
+export default StepProgressBar;

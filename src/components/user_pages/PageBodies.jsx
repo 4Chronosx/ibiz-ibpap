@@ -20,11 +20,11 @@ export const CommunityPageBody = () => {
     );
 }
 
-const PageBody = ({ children, title}) => {
+const PageBody = ({ children, title, pageName}) => {
     return(
         <div className="bg-primary-white border border-stroke-300 p-4 rounded-xl w-[700px]">
             <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-bold">Business Plan</h1>
+                <h1 className="text-2xl font-bold">{pageName}</h1>
                 <div>
                     <button>
                         <PlusIcon />

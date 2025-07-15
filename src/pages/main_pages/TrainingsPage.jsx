@@ -8,9 +8,9 @@ const TrainingsPage = () => {
     return(
         <div className="w-full min-h-screen normal-bg">
             <Navbar />
-            <div className="flex justify-between px-16 pt-4">
+            <div className="flex justify-between px-16 pt-24">
                 <UserProfile />
-                <PageBody children={<PageCards pageName='trainings' grid={2} />}/>
+                <PageBody pageName='Trainings' children={<PageCards pageName='trainings' grid={2} />}/>
                 <NotificationPanel />
             </div>
         </div>
