@@ -8,6 +8,9 @@ import BusinessLogo from '../../assets/page_cards/restaurant-logo.png';
 import guides from '../../../dummy_data/scraped_webData/scrapedDTI.json';
 import trainings from '../../../dummy_data/scraped_webData/scrapedASEANSME.json';
 import loans from '../../../dummy_data/scraped_webData/scrapedLandbank.json';
+import AddIcon from '@mui/icons-material/Add';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PDFSample from '../../../public/Business_Plan.pdf';
 
 const guidesTitle = guides.title || '';
 const guidesLink = guides.links || '';
@@ -53,7 +56,7 @@ const DownloadButton = ({ link }) => {
     );
 }
 
-export const BusinessCard = ({ title, location, description, image, businessPlanPdfUrl }) => {
+export const BusinessCard = ({ title, location, description, image, businessPlanPdfUrl , PDF}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedTab, setSelectedTab] = useState('feasibility');
 
@@ -102,7 +105,7 @@ export const BusinessCard = ({ title, location, description, image, businessPlan
                                 businessPlanPdfUrl ? (
                                     <iframe src={businessPlanPdfUrl} className='w-full h-full' title="Business Plan PDF" />
                                 ) : (
-                                    <div className='flex items-center justify-center h-full text-gray-400'>No PDF available</div>
+                                    <iframe src={PDFSample} className='w-full h-full' title="Business Plan PDF" />
                                 )
                             )}
                         </div>
@@ -118,8 +121,8 @@ export const BusinessCard = ({ title, location, description, image, businessPlan
             <img src={BusinessLogo} className='h-[80px] w-[80px]' />
             <div className='bg-secondary-brown flex items-center p-4 py-2 flex gap-4'>
                 <div>
-                    <h1>Your Business Name</h1>
-                    <p>Your Business Location</p>
+                    <h1>{title}</h1>
+                    <p>{location}</p>
                 </div>
                 <button onClick={handleOpen} className='bg-primary-white px-3 py-1 rounded-md border border-stroke-300'>
                     Open
@@ -194,13 +197,36 @@ export const LoanCard = ({ image, logo, title, subtitle, agency, link }) => {
     );
 }
 
-export const ChecklistCard = () => {
-    return(
-        <div>
+
+export const NotificationCard = ({ image, title, description, link, community = false }) => {
+    const [isCommunity, setIsCommunity] = useState(community);
+
+    return (
+        <div className="flex flex-col justify-between h-fit w-full bg-secondary-blue/40 rounded-xl hover:shadow-md transition-all duration-300 ease-in-out  px-4 py-2 gap-4 border border-stroke-200">
             
+            { isCommunity ? <div className="flex items-center gap-2">
+                <AccountCircleIcon className='w-[24px] h-[24px] text-primary-black'/>
+                <div className="flex flex-col gap-1">
+                    <h1 className="text-primary-black font-[Istok Web] text-[14px]/[14px] font-medium">Acquire Permit at DTI</h1>
+                    <p className="text-primary-black/80 font-[Istok Web] text-[12px]/[14px]">DTI Business Requirement</p>
+                </div>
+            </div> : <div className="flex items-center gap-2">
+                <input type='checkbox' className='w-4 h-4'/>
+                <div className="flex flex-col gap-1">
+                    <h1 className="text-primary-black font-[Istok Web] text-[14px]/[14px] font-medium">Acquire Permit at DTI</h1>
+                    <p className="text-primary-black/80 font-[Istok Web] text-[12px]/[14px]">DTI Business Requirement</p>
+                </div>
+            </div>}
+             
+            { isCommunity ? <button className="flex justify-center font-[Istok Web] font-medium text-[12px] border border-primary-black/50 rounded-md px-2 py-1 text-primary-black/80 bg-primary-white  hover:bg-stroke-100/80 transition-all duration-300 ">
+                <a href={link} target="_blank" rel="noopener noreferrer" className='flex items-center gap-1'>Follow <AddIcon className='w-4 h-4 text-primary-black' /></a> 
+            </button> : <button className="font-[Istok Web] font-medium text-[12px] border border-primary-black/50 rounded-md px-2 py-1 text-primary-black/80 bg-primary-white hover:bg-stroke-100/80 transition-all duration-300 ">
+                <a href={link} target="_blank" rel="noopener noreferrer">See More</a>
+            </button> }
         </div>
     );
 }
+
 
 const PageCards = ({ pageName, grid = 2  }) => {
     return(

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const beneficiaryIcons = {
   Women: "👩",
   Children: "🧒",

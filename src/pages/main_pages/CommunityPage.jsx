@@ -11,7 +11,7 @@ const CommunityPage = () => {
             <div className="flex justify-between px-16 pt-24">
                 <UserProfile />
                 <CommunityPageBody />
-                <NotificationPanel />
+                <NotificationPanel isCommunity={true} />
             </div>
         </div>
     );

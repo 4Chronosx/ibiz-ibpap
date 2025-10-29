@@ -24,19 +24,14 @@ import FinanceDetail from './FinanceDetail';
 function Feasibility({genPdf, handleSumbmit, result}) {
 
     const [activeTab, setActiveTab] = useState("overview");
-    
+    const navigate = useNavigate();
 
 
 
 
     return(<>
         {/* PDF Loading Overlay */}
-        {showPdfLoading && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-                <video src={require('../../assets/loading_&_error/PDFGeneration.mp4')} autoPlay loop width="400" height="400" />
-                <span className="text-white text-xl mt-4 absolute bottom-10">Generating Business Plan PDF...</span>
-            </div>
-        )}
+        
 
         <div className="h-screen w-screen flex justify-center items-center font-istok">
             <div className="h-[47rem] w-[40rem] bg-stroke-100 rounded-3xl flex flex-col shadow-lg">
@@ -86,7 +81,7 @@ function Feasibility({genPdf, handleSumbmit, result}) {
                     {activeTab==="product" && 
                         <div className="overflow-y-scroll h-[30rem]">
                             <div className="flex w-full justify-center flex-wrap gap-2">
-                                <Score title={"Product/Service"} rating={result.category.productService.rating} description={result.category.productService.verdict}></Score>
+                                <Score title={"Category Feasibility Score"} rating={result.category.productService.rating} description={result.category.productService.verdict}></Score>
                                 <Feedback icon={faLightbulb} bgPrimary={"bg-primary-green"} bgSecondary={"bg-secondary-green"} txPrimary={"text-primary-green"} title={"Key Findings"} content={[result.category.productService.summary]} txSecondary={"text-secondary-green"}></Feedback>
                             </div>
                             <Feedback icon={faDumbbell} bgPrimary={"bg-primary-blue"} bgSecondary={"bg-secondary-blue"} txPrimary={"text-primary-blue"} title={"Strengths"} content={result.category.productService.strengths} txSecondary={"text-secondary-blue"}></Feedback>
@@ -98,7 +93,7 @@ function Feasibility({genPdf, handleSumbmit, result}) {
                     {activeTab==="market" && 
                         <div className="overflow-y-scroll h-[30rem]">
                             <div className="flex w-full justify-center flex-wrap gap-2">
-                                <Score title="Overall Feasibility Score" rating={result.category.market.rating} description={result.category.market.verdict}></Score>
+                                <Score title="Category Feasibility Score" rating={result.category.market.rating} description={result.category.market.verdict}></Score>
                                 <Feedback icon={faLightbulb} bgPrimary={"bg-primary-green"} bgSecondary={"bg-secondary-green"} txPrimary={"text-primary-green"} title={"Key Findings"} content={[result.category.market.summary]} txSecondary={"text-secondary-green"}></Feedback>
                             </div>
 
@@ -142,8 +137,8 @@ function Feasibility({genPdf, handleSumbmit, result}) {
                 </div>
 
 
-                <button onClick={handleSumbmit}>Retry Analysis</button>
-                <button onClick={genPdf}>Generate Business Plan</button>
+                <button className='bg-primary-white mx-4 border border-primary-black mb-2 rounded-lg py-2' onClick={handleSumbmit}>Retry Analysis</button>
+                <button className='bg-primary-pink mx-4 text-white rounded-lg py-2' onClick={() => navigate('/home')}>Generate Business Plan</button>
 
 
             </div>

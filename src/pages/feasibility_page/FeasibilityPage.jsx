@@ -55,11 +55,11 @@ result JSON format
 
 */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Feasibility from "../../components/Feasibility/Feasibility";
 import jspdf from "jspdf";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 
@@ -84,7 +84,7 @@ function FeasibilityPage() {
 
   const location = useLocation();
   const { userData } = location.state || {}; 
-  const navigate = useNavigate();
+ 
 
   const [result, setResult] = useState({
     businessName: "",
@@ -376,7 +376,7 @@ function FeasibilityPage() {
   return (
     <>
 
-    <Feasibility genPdf={generateBusPdf} handleSumbmit={handleSubmit} result={result}></Feasibility>
+    <Feasibility handleSumbmit={handleSubmit} result={result}></Feasibility>
 
     </>
   );
